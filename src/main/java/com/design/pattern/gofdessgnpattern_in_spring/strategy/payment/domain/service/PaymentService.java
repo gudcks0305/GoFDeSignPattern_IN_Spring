@@ -13,6 +13,7 @@ public class PaymentService {
    }
 
    public void processPayment(Payment payment) {
+      // 전략을 가져와서 해당 전략을 실행한다. (전략 패턴)
         paymentStrategyGetter
                 .getStrategy(payment.getPaymentType())
                 .processPayment(payment);
