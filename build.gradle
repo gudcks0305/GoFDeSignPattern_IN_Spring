@@ -25,6 +25,16 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // h2db settings
+    runtimeOnly 'com.h2database:h2'
+    // jpa settings
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // embedded redis settings
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation group: 'it.ozimov', name: 'embedded-redis', version: '0.7.2'
+    // redisson settings
+    implementation 'org.redisson:redisson-spring-boot-starter:3.16.1'
 }
 
 tasks.named('test') {

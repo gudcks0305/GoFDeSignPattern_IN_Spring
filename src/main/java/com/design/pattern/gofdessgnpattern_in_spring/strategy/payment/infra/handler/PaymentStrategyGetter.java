@@ -1,6 +1,6 @@
 package com.design.pattern.gofdessgnpattern_in_spring.strategy.payment.infra.handler;
 
-import com.design.pattern.gofdessgnpattern_in_spring.strategy.global.utils.BeanUtils;
+import com.design.pattern.gofdessgnpattern_in_spring.global.utils.BeanUtils;
 import com.design.pattern.gofdessgnpattern_in_spring.strategy.payment.domain.Payment;
 import com.design.pattern.gofdessgnpattern_in_spring.strategy.payment.domain.service.strategy.PaymentProcessor;
 import org.springframework.stereotype.Component;
