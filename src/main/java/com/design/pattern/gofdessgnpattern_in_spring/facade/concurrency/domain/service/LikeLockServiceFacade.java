@@ -24,7 +24,10 @@ public class LikeLockServiceFacade {
 
     // 따라서 트랜잭션을 사용하는 매서드를 호출하기 전에 락을 획득하고
     // 트랜잭션을 사용하는 매서드를 호출한 후에 락을 해제하는 형태로 구현해야 한다.
-
+    // Facade 패턴이란 매서드를 호출하는 클라이언트 입장에서는
+    // 내부적으로 어떤 매서드가 호출되는지 알 필요가 없다.
+    // 따라서 Facade 패턴을 사용하여, 좋아요 증가 기능을 구현한다.
+    // 복잡한 내부 구현을 감추고, 단순한 인터페이스를 제공한다.
 
     public void upLike(UUID id) {
         concurrencyService
