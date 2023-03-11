@@ -1,4 +1,4 @@
-package com.design.pattern.gofdessgnpattern_in_spring.strategy.global.config;
+package com.design.pattern.gofdessgnpattern_in_spring.global.config;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.*;
