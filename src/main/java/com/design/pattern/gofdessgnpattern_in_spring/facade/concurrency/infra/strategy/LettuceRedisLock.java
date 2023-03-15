@@ -6,6 +6,8 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SessionCallback;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.Callable;
+
 @Component("lettuceLock")
 public class LettuceRedisLock implements RockProcessor {
     private final RedisTemplate<String, String> redisTemplate;
@@ -15,17 +17,21 @@ public class LettuceRedisLock implements RockProcessor {
     }
 
     @Override
-    public void execute(String key, Runnable... runnable) {
+    public Object execute(String key, Callable callable) {
         redisTemplate.execute(new SessionCallback<>() {
             @Override
             public Object execute(RedisOperations operations) throws RuntimeException {
                 operations.watch("lock:" + key);
                 operations.multi();
-                for (Runnable r : runnable) {
-                    r.run();
+                try {
+                    callable.call();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
                 }
                 return operations.exec();
             }
         });
+        return null;
     }
+
 }

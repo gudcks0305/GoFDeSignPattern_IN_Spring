@@ -1,5 +1,7 @@
 package com.design.pattern.gofdessgnpattern_in_spring.facade.concurrency.domain.strategy;
 
-public interface RockProcessor {
-    void execute(String key, Runnable... runnable);
+import java.util.concurrent.Callable;
+
+public interface RockProcessor<T> {
+    Object execute(String key, Callable<T> runnable);
 }

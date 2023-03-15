@@ -24,7 +24,7 @@ import java.time.Duration;
 import java.util.Arrays;
 
 @Configuration
-@EnableRedisRepositories
+
 public class RedisRepositoryConfig {
     @Value("${spring.data.redis.host}")
     private String redisHost;

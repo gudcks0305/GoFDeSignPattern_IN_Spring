@@ -5,6 +5,8 @@ import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
 
+import java.util.concurrent.Callable;
+
 @Component("redissonLock")
 public class RedissonLock implements RockProcessor {
     private final RedissonClient redissonClient;
@@ -14,13 +16,13 @@ public class RedissonLock implements RockProcessor {
     }
 
     @Override
-    public void execute(String key, Runnable... runnable) {
+    public Object execute(String key, Callable callable) {
         RLock lock = redissonClient.getLock("lock:" + key);
         lock.lock();
         try {
-            for (Runnable r : runnable) {
-                r.run();
-            }
+            return callable.call();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         } finally {
             lock.unlock();
         }

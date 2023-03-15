@@ -3,6 +3,7 @@ package com.design.pattern.gofdessgnpattern_in_spring.facade.concurrency.domain.
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
+import java.util.concurrent.Callable;
 
 @Service
 public class LikeLockServiceFacade {
@@ -31,8 +32,11 @@ public class LikeLockServiceFacade {
 
     public void upLike(UUID id) {
         concurrencyService
-                .execute(id.toString(),
-                        () -> likeService.upLike(id));
+                .execute(id.toString(), () -> {
+                    likeService.upLike(id);
+                    return null;
+                }
+                );
 
     }
 }

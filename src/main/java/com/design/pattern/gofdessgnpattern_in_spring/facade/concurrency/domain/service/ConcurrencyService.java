@@ -4,6 +4,8 @@ import com.design.pattern.gofdessgnpattern_in_spring.facade.concurrency.domain.s
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.concurrent.Callable;
+
 @Service
 public class ConcurrencyService {
     private final RockProcessor rockProcessor;
@@ -12,7 +14,7 @@ public class ConcurrencyService {
         this.rockProcessor = rockProcessor;
     }
 
-    public void execute(String key, Runnable... task) {
-        rockProcessor.execute(key, task);
+    public Object execute(String key, Callable task) {
+        return rockProcessor.execute(key, task);
     }
 }
