@@ -6,7 +6,6 @@ import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.Callable;
-
 @Component("redissonLock")
 public class RedissonLock implements RockProcessor {
     private final RedissonClient redissonClient;

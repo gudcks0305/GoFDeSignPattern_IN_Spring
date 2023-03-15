@@ -29,7 +29,6 @@ public class LikeLockServiceFacade {
     // 내부적으로 어떤 매서드가 호출되는지 알 필요가 없다.
     // 따라서 Facade 패턴을 사용하여, 좋아요 증가 기능을 구현한다.
     // 복잡한 내부 구현을 감추고, 단순한 인터페이스를 제공한다.
-
     public void upLike(UUID id) {
         concurrencyService
                 .execute(id.toString(), () -> {
